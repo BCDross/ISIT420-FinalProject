@@ -12,22 +12,21 @@ namespace ProductsApp
     using System;
     using System.Collections.Generic;
     
-    public partial class SalesPersonTable
+    public partial class MonthlyWeather
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SalesPersonTable()
+        public MonthlyWeather()
         {
-            this.Orders = new HashSet<Order>();
+            this.DailyWeathers = new HashSet<DailyWeather>();
         }
     
-        public int salesPersonID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int Age { get; set; }
-        public int storeID { get; set; }
+        public int MonthlyID { get; set; }
+        public Nullable<int> Month { get; set; }
+        public Nullable<int> Year { get; set; }
+        public Nullable<decimal> MonthlyTotalLiquidPrecipitation { get; set; }
+        public Nullable<decimal> MonthlyMeanTemperature { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual StoreTable StoreTable { get; set; }
+        public virtual ICollection<DailyWeather> DailyWeathers { get; set; }
     }
 }

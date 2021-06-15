@@ -13,10 +13,10 @@ namespace ProductsApp
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OrdersDBEntities : DbContext
+    public partial class CovidWeatherDBEntities : DbContext
     {
-        public OrdersDBEntities()
-            : base("name=OrdersDBEntities")
+        public CovidWeatherDBEntities()
+            : base("name=CovidWeatherDBEntities")
         {
         }
     
@@ -25,10 +25,9 @@ namespace ProductsApp
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CDTable> CDTables { get; set; }
-        public virtual DbSet<Inventory> Inventories { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<SalesPersonTable> SalesPersonTables { get; set; }
-        public virtual DbSet<StoreTable> StoreTables { get; set; }
+        public virtual DbSet<DailyCovidCas> DailyCovidCases { get; set; }
+        public virtual DbSet<DailyWeather> DailyWeathers { get; set; }
+        public virtual DbSet<MonthlyCovidCas> MonthlyCovidCases { get; set; }
+        public virtual DbSet<MonthlyWeather> MonthlyWeathers { get; set; }
     }
 }

@@ -12,25 +12,21 @@ namespace ProductsApp
     using System;
     using System.Collections.Generic;
     
-    public partial class CDTable
+    public partial class MonthlyCovidCas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CDTable()
+        public MonthlyCovidCas()
         {
-            this.Inventories = new HashSet<Inventory>();
-            this.Orders = new HashSet<Order>();
+            this.DailyCovidCases = new HashSet<DailyCovidCas>();
         }
     
-        public int cdID { get; set; }
-        public string CDname { get; set; }
-        public string Artist { get; set; }
-        public string RecordCompany { get; set; }
-        public int YearReleased { get; set; }
-        public decimal ListPrice { get; set; }
+        public int MonthlyID { get; set; }
+        public Nullable<int> Month { get; set; }
+        public Nullable<int> Year { get; set; }
+        public Nullable<int> MonthlyPositives { get; set; }
+        public Nullable<decimal> MonthlyPositiveRate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventory> Inventories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<DailyCovidCas> DailyCovidCases { get; set; }
     }
 }

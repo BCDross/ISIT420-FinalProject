@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CovidWeatherDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DailyCovidCases">
+          <Key>
+            <PropertyRef Name="DailyID" />
+          </Key>
+          <Property Name="DailyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="DailyPositives" Type="int" />
+          <Property Name="DailyPositiveRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DailyWeather">
+          <Key>
+            <PropertyRef Name="DailyID" />
+          </Key>
+          <Property Name="DailyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="DailyPrecipitation" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DailyDryBulbTemperature" Type="decimal" Precision="18" Scale="1" />
+          <Property Name="MonthlyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MonthlyCovidCases">
+          <Key>
+            <PropertyRef Name="MonthlyID" />
+          </Key>
+          <Property Name="MonthlyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="MonthlyPositives" Type="int" />
+          <Property Name="MonthlyPositiveRate" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MonthlyWeather">
+          <Key>
+            <PropertyRef Name="MonthlyID" />
+          </Key>
+          <Property Name="MonthlyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="MonthlyTotalLiquidPrecipitation" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlyMeanTemperature" Type="decimal" Precision="18" Scale="1" />
+        </EntityType>
+        <Association Name="FK_DailyCovidCases_MonthlyCovidCases">
+          <End Role="MonthlyCovidCases" Type="Self.MonthlyCovidCases" Multiplicity="1" />
+          <End Role="DailyCovidCases" Type="Self.DailyCovidCases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonthlyCovidCases">
+              <PropertyRef Name="MonthlyID" />
+            </Principal>
+            <Dependent Role="DailyCovidCases">
+              <PropertyRef Name="MonthlyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyWeather_MonthlyWeather">
+          <End Role="MonthlyWeather" Type="Self.MonthlyWeather" Multiplicity="1" />
+          <End Role="DailyWeather" Type="Self.DailyWeather" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonthlyWeather">
+              <PropertyRef Name="MonthlyID" />
+            </Principal>
+            <Dependent Role="DailyWeather">
+              <PropertyRef Name="MonthlyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CovidWeatherDBModelStoreContainer">
+          <EntitySet Name="DailyCovidCases" EntityType="Self.DailyCovidCases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyWeather" EntityType="Self.DailyWeather" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonthlyCovidCases" EntityType="Self.MonthlyCovidCases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonthlyWeather" EntityType="Self.MonthlyWeather" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DailyCovidCases_MonthlyCovidCases" Association="Self.FK_DailyCovidCases_MonthlyCovidCases">
+            <End Role="MonthlyCovidCases" EntitySet="MonthlyCovidCases" />
+            <End Role="DailyCovidCases" EntitySet="DailyCovidCases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyWeather_MonthlyWeather" Association="Self.FK_DailyWeather_MonthlyWeather">
+            <End Role="MonthlyWeather" EntitySet="MonthlyWeather" />
+            <End Role="DailyWeather" EntitySet="DailyWeather" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CovidWeatherDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DailyCovidCas">
+          <Key>
+            <PropertyRef Name="DailyID" />
+          </Key>
+          <Property Name="DailyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="DailyPositives" Type="Int32" />
+          <Property Name="DailyPositiveRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MonthlyCovidCas" Relationship="Self.FK_DailyCovidCases_MonthlyCovidCases" FromRole="DailyCovidCases" ToRole="MonthlyCovidCases" />
+        </EntityType>
+        <EntityType Name="DailyWeather">
+          <Key>
+            <PropertyRef Name="DailyID" />
+          </Key>
+          <Property Name="DailyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="DailyPrecipitation" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DailyDryBulbTemperature" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="MonthlyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MonthlyWeather" Relationship="Self.FK_DailyWeather_MonthlyWeather" FromRole="DailyWeather" ToRole="MonthlyWeather" />
+        </EntityType>
+        <EntityType Name="MonthlyCovidCas">
+          <Key>
+            <PropertyRef Name="MonthlyID" />
+          </Key>
+          <Property Name="MonthlyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="MonthlyPositives" Type="Int32" />
+          <Property Name="MonthlyPositiveRate" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="DailyCovidCases" Relationship="Self.FK_DailyCovidCases_MonthlyCovidCases" FromRole="MonthlyCovidCases" ToRole="DailyCovidCases" />
+        </EntityType>
+        <EntityType Name="MonthlyWeather">
+          <Key>
+            <PropertyRef Name="MonthlyID" />
+          </Key>
+          <Property Name="MonthlyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="MonthlyTotalLiquidPrecipitation" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MonthlyMeanTemperature" Type="Decimal" Precision="18" Scale="1" />
+          <NavigationProperty Name="DailyWeathers" Relationship="Self.FK_DailyWeather_MonthlyWeather" FromRole="MonthlyWeather" ToRole="DailyWeather" />
+        </EntityType>
+        <Association Name="FK_DailyCovidCases_MonthlyCovidCases">
+          <End Role="MonthlyCovidCases" Type="Self.MonthlyCovidCas" Multiplicity="1" />
+          <End Role="DailyCovidCases" Type="Self.DailyCovidCas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonthlyCovidCases">
+              <PropertyRef Name="MonthlyID" />
+            </Principal>
+            <Dependent Role="DailyCovidCases">
+              <PropertyRef Name="MonthlyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyWeather_MonthlyWeather">
+          <End Role="MonthlyWeather" Type="Self.MonthlyWeather" Multiplicity="1" />
+          <End Role="DailyWeather" Type="Self.DailyWeather" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonthlyWeather">
+              <PropertyRef Name="MonthlyID" />
+            </Principal>
+            <Dependent Role="DailyWeather">
+              <PropertyRef Name="MonthlyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CovidWeatherDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DailyCovidCases" EntityType="Self.DailyCovidCas" />
+          <EntitySet Name="DailyWeathers" EntityType="Self.DailyWeather" />
+          <EntitySet Name="MonthlyCovidCases" EntityType="Self.MonthlyCovidCas" />
+          <EntitySet Name="MonthlyWeathers" EntityType="Self.MonthlyWeather" />
+          <AssociationSet Name="FK_DailyCovidCases_MonthlyCovidCases" Association="Self.FK_DailyCovidCases_MonthlyCovidCases">
+            <End Role="MonthlyCovidCases" EntitySet="MonthlyCovidCases" />
+            <End Role="DailyCovidCases" EntitySet="DailyCovidCases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyWeather_MonthlyWeather" Association="Self.FK_DailyWeather_MonthlyWeather">
+            <End Role="MonthlyWeather" EntitySet="MonthlyWeathers" />
+            <End Role="DailyWeather" EntitySet="DailyWeathers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CovidWeatherDBModelStoreContainer" CdmEntityContainer="CovidWeatherDBEntities">
+          <EntitySetMapping Name="DailyCovidCases">
+            <EntityTypeMapping TypeName="CovidWeatherDBModel.DailyCovidCas">
+              <MappingFragment StoreEntitySet="DailyCovidCases">
+                <ScalarProperty Name="DailyID" ColumnName="DailyID" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="DailyPositives" ColumnName="DailyPositives" />
+                <ScalarProperty Name="DailyPositiveRate" ColumnName="DailyPositiveRate" />
+                <ScalarProperty Name="MonthlyID" ColumnName="MonthlyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyWeathers">
+            <EntityTypeMapping TypeName="CovidWeatherDBModel.DailyWeather">
+              <MappingFragment StoreEntitySet="DailyWeather">
+                <ScalarProperty Name="DailyID" ColumnName="DailyID" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="DailyPrecipitation" ColumnName="DailyPrecipitation" />
+                <ScalarProperty Name="DailyDryBulbTemperature" ColumnName="DailyDryBulbTemperature" />
+                <ScalarProperty Name="MonthlyID" ColumnName="MonthlyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthlyCovidCases">
+            <EntityTypeMapping TypeName="CovidWeatherDBModel.MonthlyCovidCas">
+              <MappingFragment StoreEntitySet="MonthlyCovidCases">
+                <ScalarProperty Name="MonthlyID" ColumnName="MonthlyID" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="MonthlyPositives" ColumnName="MonthlyPositives" />
+                <ScalarProperty Name="MonthlyPositiveRate" ColumnName="MonthlyPositiveRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthlyWeathers">
+            <EntityTypeMapping TypeName="CovidWeatherDBModel.MonthlyWeather">
+              <MappingFragment StoreEntitySet="MonthlyWeather">
+                <ScalarProperty Name="MonthlyID" ColumnName="MonthlyID" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="MonthlyTotalLiquidPrecipitation" ColumnName="MonthlyTotalLiquidPrecipitation" />
+                <ScalarProperty Name="MonthlyMeanTemperature" ColumnName="MonthlyMeanTemperature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

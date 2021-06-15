@@ -12,18 +12,15 @@ namespace ProductsApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class DailyCovidCas
     {
-        public int ordersID { get; set; }
-        public int cdID { get; set; }
-        public int dayPurch { get; set; }
-        public int hourPurch { get; set; }
-        public int pricePaid { get; set; }
-        public int salesPersonID { get; set; }
-        public int storeID { get; set; }
+        public int DailyID { get; set; }
+        public Nullable<int> Day { get; set; }
+        public Nullable<int> Month { get; set; }
+        public Nullable<int> DailyPositives { get; set; }
+        public Nullable<decimal> DailyPositiveRate { get; set; }
+        public int MonthlyID { get; set; }
     
-        public virtual CDTable CDTable { get; set; }
-        public virtual SalesPersonTable SalesPersonTable { get; set; }
-        public virtual StoreTable StoreTable { get; set; }
+        public virtual MonthlyCovidCas MonthlyCovidCas { get; set; }
     }
 }

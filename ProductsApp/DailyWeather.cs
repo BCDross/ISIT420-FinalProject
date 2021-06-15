@@ -12,12 +12,15 @@ namespace ProductsApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Inventory
+    public partial class DailyWeather
     {
-        public int ItemID { get; set; }
-        public int cdID { get; set; }
-        public int ItemQuantity { get; set; }
+        public int DailyID { get; set; }
+        public Nullable<int> Day { get; set; }
+        public Nullable<int> Month { get; set; }
+        public Nullable<decimal> DailyPrecipitation { get; set; }
+        public Nullable<decimal> DailyDryBulbTemperature { get; set; }
+        public int MonthlyID { get; set; }
     
-        public virtual CDTable CDTable { get; set; }
+        public virtual MonthlyWeather MonthlyWeather { get; set; }
     }
 }
