@@ -1,75 +1,58 @@
-﻿
-var uri = 'api/Orders';
-
-$(document).ready(function () {
-    GetSalespeople();
-    GetStores();
+﻿document.addEventListener("DOMContentLoaded", function (event) {
+    document.getElementById("getResults1").addEventListener("click", function () {
+        getResultsData1();
+        getResultsData2();
+        getResultsData3();
+    });
 });
 
-function GetMarkupData() {
-    // Send an AJAX request
-    $.getJSON(uri + '/BestMarkups')
+function getResultsData1() {
+    $.getJSON("api/stats/query1")
         .done(function (data) {
-
-            $.each(data, function (key, item) {
-
-                $('<li>', { text: formatItem(item) }).appendTo($('#markups'));
-            });
+            let table = document.getElementById("table1");
+            generateTable(table, data);
         });
 }
 
-function formatItem(item) {
-    return 'City : ' + item.City + ', Count: ' + item.Count;
-}
-
-function GetSalespeople() {
-    // Send an AJAX request
-    $.getJSON(uri + '/Salespeople')
+function getResultsData2() {
+    $.getJSON("api/stats/query2")
         .done(function (data) {
-
-            $.each(data, function (key, item) {
-
-                $('<option>', { text: item, value: item }).appendTo($('#employees'));
-            });
-        });
-}
-
-function GetStores() {
-    // Send an AJAX request
-    $.getJSON(uri + '/Stores')
-        .done(function (data) {
-
-            $.each(data, function (key, item) {
-
-                $('<option>', { text: item, value: item }).appendTo($('#stores'));
-            });
-        });
-}
-
-function GetEmployeePerformance() {
-    let select = document.getElementById("employees");
-    let employeeName = select.options[select.selectedIndex].value;
-    console.log(employeeName);
-
-    // Send an AJAX request
-    $.getJSON(uri + '/EmployeePerformance?employeeName=' + employeeName)
-        .done(function (data) {
+            let table = document.getElementById("table2");
             console.log(data);
-
-            document.getElementById("employeePerformance").innerText = "That employee sold $" + data + " for the year";
+            let row = table.insertRow();
+            $.each(data, function (key, item) {
+                let cell = row.insertCell();
+                let text = document.createTextNode(item);
+                cell.appendChild(text);
+            });
         });
 }
 
-function GetStorePerformance() {
-    let select = document.getElementById("stores");
-    let storeName = select.options[select.selectedIndex].value;
-    console.log(storeName);
-
-    // Send an AJAX request
-    $.getJSON(uri + '/StorePerformance?storeCity=' + storeName)
+function getResultsData3() {
+    $.getJSON("api/stats/query3")
         .done(function (data) {
-            console.log(data);
-
-            document.getElementById("storePerformance").innerText = "That store sold $" + data + " for the year";
+            $.each(data, function (key, item) {
+                // Add a list item for the product.
+                $('<li>', { text: formatItem3(item) }).appendTo($('#displayRace3'));
+            });
         });
+}
+
+function formatItem1(item) {
+    return "Race: " + item.SubjectRace + "  Level: " + item.IncidentID + "  Date:  " + item.eDate + "  Max Temp:  " + item.TempMax;
+}
+
+function formatItem3(item) {
+    return "Level: " + item.Level + "  Temp: " + item.MaxTemp + "  Date:  " + item.iDate + "  Race: " + item.Race;
+}
+
+function generateTable(table, data) {
+    for (let element of data) {
+        let row = table.insertRow();
+        for (key in element) {
+            let cell = row.insertCell();
+            let text = document.createTextNode(element[key]);
+            cell.appendChild(text);
+        }
+    }
 }
