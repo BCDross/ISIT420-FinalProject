@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>Note App</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="Scripts/App.js"></script>
+
+</head>
+
+
+<body>
+    <div>
+        <h2>Which stores are selling CDs for better markups? (Price more than $13)</h2><br />
+        <input type="button" value="GetMarkups" onclick="GetMarkupData()" /><br />
+        <ul id="markups" />
+        <br />
+    </div>
+
+    <div>
+        <h2>I want to check on the performance of an employee.</h2><br />
+        choose an employee <select name="employees" id="employees"></select><input type="button" value="GetEmp" onclick="GetEmployeePerformance()" /><br />
+        <p id="employeePerformance"></p>
+        <br />
+    </div>
+
+    <div>
+        <h2>I want to see the performance of my stores.</h2><br />
+        choose an store <select name="stores" id="stores"></select><input type="button" value="GetStore" onclick="GetStorePerformance()" /><br />
+        <p id="storePerformance"></p>
+        <br />
+    </div>
+
+</body>
+
+</html>
