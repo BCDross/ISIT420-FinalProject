@@ -138,6 +138,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Stats.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Stats.edmx</DependentUpon>
+      <LastGenOutput>Stats.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Stats.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Stats.edmx</DependentUpon>
+      <LastGenOutput>Stats.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -146,10 +156,37 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="DailyCovidCas.cs">
+      <DependentUpon>Stats.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DailyWeather.cs">
+      <DependentUpon>Stats.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MonthlyCovidCas.cs">
+      <DependentUpon>Stats.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MonthlyWeather.cs">
+      <DependentUpon>Stats.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stats.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Stats.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stats.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Stats.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stats.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Stats.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -162,6 +199,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <EntityDeploy Include="Stats.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Stats.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Stats.edmx.diagram">
+      <DependentUpon>Stats.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

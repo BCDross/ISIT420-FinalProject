@@ -13,7 +13,7 @@ namespace ProductsApp.Controllers
          Stats stats = new Stats();
 
         [Route("api/stats/query1")]
-        public IEnumerable<string> GetStatsdata1()
+        public IEnumerable<string> GetStats1()
         {
             var result =
                (from sales in ordersDB.Orders
@@ -23,7 +23,7 @@ namespace ProductsApp.Controllers
         }
 
         [Route("api/stats/query2")]
-        public IEnumerable<string> GetStores()
+        public IEnumerable<string> GetStats2()
         {
             var result =
                 (from stores in ordersDB.Orders
@@ -33,7 +33,7 @@ namespace ProductsApp.Controllers
         }
 
         [Route("api/stats/query3")]
-        public IHttpActionResult GetEmployeePerformance(string employeeName)
+        public IHttpActionResult GetStats3()
         {
             var result =
                 (from order in ordersDB.Orders
