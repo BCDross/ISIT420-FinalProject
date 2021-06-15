@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersApp", "ProductsApp\OrdersApp.csproj", "{72D2B544-6759-436C-8B49-9936BCDB0327}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CovidWeatherAPI", "FinalAPIApp\CovidWeatherAPI.csproj", "{72D2B544-6759-436C-8B49-9936BCDB0327}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

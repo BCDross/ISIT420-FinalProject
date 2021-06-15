@@ -125,27 +125,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="OrdersDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OrdersDB.edmx</DependentUpon>
-      <LastGenOutput>OrdersDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="OrdersDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OrdersDB.edmx</DependentUpon>
-      <LastGenOutput>OrdersDB.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\App.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="css\themes\jquery.mobile.icons.min" />
-    <EntityDeploy Include="OrdersDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OrdersDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="OrdersDB.edmx.diagram">
-      <DependentUpon>OrdersDB.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -162,41 +145,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="CDTable.cs">
-      <DependentUpon>OrdersDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Inventory.cs">
-      <DependentUpon>OrdersDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Order.cs">
-      <DependentUpon>OrdersDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrdersDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrdersDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrdersDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrdersDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrdersDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrdersDB.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SalesPersonTable.cs">
-      <DependentUpon>OrdersDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StoreTable.cs">
-      <DependentUpon>OrdersDB.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
