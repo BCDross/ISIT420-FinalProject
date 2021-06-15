@@ -13,10 +13,10 @@ namespace ProductsApp
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CovidWeatherDBEntities : DbContext
+    public partial class Stats : DbContext
     {
-        public CovidWeatherDBEntities()
-            : base("name=CovidWeatherDBEntities")
+        public Stats()
+            : base("name=Stats")
         {
         }
     

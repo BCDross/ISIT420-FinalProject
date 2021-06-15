@@ -10,9 +10,9 @@ namespace ProductsApp.Controllers
 {
     public class StatsController : ApiController
     {
-        StatsDBEntities statsDB = new StatsDBEntities();
+         Stats stats = new Stats();
 
-        [Route("api/stats/data1")]
+        [Route("api/stats/query1")]
         public IEnumerable<string> GetStatsdata1()
         {
             var result =
@@ -22,7 +22,7 @@ namespace ProductsApp.Controllers
             return result;
         }
 
-        [Route("api/stats/data2")]
+        [Route("api/stats/query2")]
         public IEnumerable<string> GetStores()
         {
             var result =
@@ -32,7 +32,7 @@ namespace ProductsApp.Controllers
             return result;
         }
 
-        [Route("api/stats/data3")]
+        [Route("api/stats/query3")]
         public IHttpActionResult GetEmployeePerformance(string employeeName)
         {
             var result =

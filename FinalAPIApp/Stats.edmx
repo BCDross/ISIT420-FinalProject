@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CovidWeatherDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="StatsDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DailyCovidCases">
           <Key>
             <PropertyRef Name="DailyID" />
@@ -71,7 +71,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CovidWeatherDBModelStoreContainer">
+        <EntityContainer Name="StatsDBStoreContainer">
           <EntitySet Name="DailyCovidCases" EntityType="Self.DailyCovidCases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DailyWeather" EntityType="Self.DailyWeather" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MonthlyCovidCases" EntityType="Self.MonthlyCovidCases" Schema="dbo" store:Type="Tables" />
@@ -89,7 +89,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CovidWeatherDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="StatsDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="DailyCovidCas">
           <Key>
             <PropertyRef Name="DailyID" />
@@ -160,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CovidWeatherDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Stats" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DailyCovidCases" EntityType="Self.DailyCovidCas" />
           <EntitySet Name="DailyWeathers" EntityType="Self.DailyWeather" />
           <EntitySet Name="MonthlyCovidCases" EntityType="Self.MonthlyCovidCas" />
@@ -179,9 +179,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CovidWeatherDBModelStoreContainer" CdmEntityContainer="CovidWeatherDBEntities">
+        <EntityContainerMapping StorageEntityContainer="StatsDBStoreContainer" CdmEntityContainer="Stats">
           <EntitySetMapping Name="DailyCovidCases">
-            <EntityTypeMapping TypeName="CovidWeatherDBModel.DailyCovidCas">
+            <EntityTypeMapping TypeName="StatsDB.DailyCovidCas">
               <MappingFragment StoreEntitySet="DailyCovidCases">
                 <ScalarProperty Name="DailyID" ColumnName="DailyID" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
@@ -193,7 +193,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DailyWeathers">
-            <EntityTypeMapping TypeName="CovidWeatherDBModel.DailyWeather">
+            <EntityTypeMapping TypeName="StatsDB.DailyWeather">
               <MappingFragment StoreEntitySet="DailyWeather">
                 <ScalarProperty Name="DailyID" ColumnName="DailyID" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
@@ -205,7 +205,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MonthlyCovidCases">
-            <EntityTypeMapping TypeName="CovidWeatherDBModel.MonthlyCovidCas">
+            <EntityTypeMapping TypeName="StatsDB.MonthlyCovidCas">
               <MappingFragment StoreEntitySet="MonthlyCovidCases">
                 <ScalarProperty Name="MonthlyID" ColumnName="MonthlyID" />
                 <ScalarProperty Name="Month" ColumnName="Month" />
@@ -216,7 +216,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MonthlyWeathers">
-            <EntityTypeMapping TypeName="CovidWeatherDBModel.MonthlyWeather">
+            <EntityTypeMapping TypeName="StatsDB.MonthlyWeather">
               <MappingFragment StoreEntitySet="MonthlyWeather">
                 <ScalarProperty Name="MonthlyID" ColumnName="MonthlyID" />
                 <ScalarProperty Name="Month" ColumnName="Month" />
