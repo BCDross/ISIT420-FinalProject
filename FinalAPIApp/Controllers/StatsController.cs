@@ -64,5 +64,25 @@ namespace CovidWeatherAPI.Controllers
 
             return Json(result);
         }
+
+        [Route("api/stats/query4")]
+        public IHttpActionResult GetStats4()// daily precip vs covid for extra granularity
+        {
+            var result =
+               from weather in stats.DailyWeathers
+               join covid in stats.DailyCovidCases on weather.DailyID equals covid.DailyID
+               join years in stats.MonthlyWeathers on covid.MonthlyID equals years.MonthlyID
+               orderby weather.DailyID ascending
+               select new
+               {
+                   Year = years.Year,
+                   Month = weather.Month,
+                   Day = weather.Day,
+                   Temp = weather.DailyDryBulbTemperature,//cmon it's not like we have snow
+                   Positives = covid.DailyPositives
+               };
+
+            return Json(result);
+        }
     }
 }
