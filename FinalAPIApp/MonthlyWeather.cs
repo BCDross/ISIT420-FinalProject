@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProductsApp
+namespace CovidWeatherAPI
 {
     using System;
     using System.Collections.Generic;
