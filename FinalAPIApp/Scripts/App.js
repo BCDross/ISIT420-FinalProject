@@ -1,8 +1,24 @@
 ﻿document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults1").addEventListener("click", function () {
         getResultsData1();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+    document.getElementById("getResults2").addEventListener("click", function () {
         getResultsData2();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+    document.getElementById("getResults3").addEventListener("click", function () {
         getResultsData3();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+    document.getElementById("getResults4").addEventListener("click", function () {
+        getResultsData4();
     });
 });
 
@@ -18,23 +34,23 @@ function getResultsData2() {
     $.getJSON("api/stats/query2")
         .done(function (data) {
             let table = document.getElementById("table2");
-            console.log(data);
-            let row = table.insertRow();
-            $.each(data, function (key, item) {
-                let cell = row.insertCell();
-                let text = document.createTextNode(item);
-                cell.appendChild(text);
-            });
+            generateTable(table, data);
         });
 }
 
 function getResultsData3() {
     $.getJSON("api/stats/query3")
         .done(function (data) {
-            $.each(data, function (key, item) {
-                // Add a list item for the product.
-                $('<li>', { text: formatItem3(item) }).appendTo($('#displayRace3'));
-            });
+            let table = document.getElementById("table3");
+            generateTable(table, data);
+        });
+}
+
+function getResultsData4() {
+    $.getJSON("api/stats/query4")
+        .done(function (data) {
+            let table = document.getElementById("table4");
+            generateTable(table, data);
         });
 }
 
