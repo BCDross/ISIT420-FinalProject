@@ -1,24 +1,32 @@
 ﻿document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults1").addEventListener("click", function () {
+        $("div:visible").hide();
         getResultsData1();
+        $("#query1").show();
     });
 });
 
 document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults2").addEventListener("click", function () {
+        $("div:visible").hide();
         getResultsData2();
+        $("#query2").show();
     });
 });
 
 document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults3").addEventListener("click", function () {
+        $("div:visible").hide();
         getResultsData3();
+        $("#query3").show();
     });
 });
 
 document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults4").addEventListener("click", function () {
+        $("div:visible").hide();
         getResultsData4();
+        $("#query4").show();
     });
 });
 
@@ -63,8 +71,12 @@ function formatItem3(item) {
 }
 
 function generateTable(table, data) {
+    for (var i = 1; i < table.rows.length;) {
+        table.deleteRow(i);
+    }
     for (let element of data) {
         let row = table.insertRow();
+
         for (key in element) {
             let cell = row.insertCell();
             let text = document.createTextNode(element[key]);
