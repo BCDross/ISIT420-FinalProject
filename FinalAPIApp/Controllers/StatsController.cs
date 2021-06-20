@@ -46,7 +46,7 @@ namespace CovidWeatherAPI.Controllers
         }
 
         [Route("api/stats/query3")]
-        public IHttpActionResult GetStats3()// daily temp vs covid for extra granularity
+        public IHttpActionResult GetStats3()// daily precipitation vs covid for extra granularity
         {
             var result =
                from weather in stats.DailyWeathers
@@ -66,7 +66,7 @@ namespace CovidWeatherAPI.Controllers
         }
 
         [Route("api/stats/query4")]
-        public IHttpActionResult GetStats4()// daily precip vs covid for extra granularity
+        public IHttpActionResult GetStats4()// daily temperature vs covid for extra granularity
         {
             var result =
                from weather in stats.DailyWeathers

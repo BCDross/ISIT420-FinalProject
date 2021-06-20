@@ -1,6 +1,9 @@
 ﻿document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults1").addEventListener("click", function () {
-        $("div:visible").hide();
+        $("#query1").hide();
+        $("#query2").hide();
+        $("#query3").hide();
+        $("#query4").hide();
         getResultsData1();
         $("#query1").show();
     });
@@ -8,7 +11,10 @@
 
 document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults2").addEventListener("click", function () {
-        $("div:visible").hide();
+        $("#query1").hide();
+        $("#query2").hide();
+        $("#query3").hide();
+        $("#query4").hide();
         getResultsData2();
         $("#query2").show();
     });
@@ -16,7 +22,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults3").addEventListener("click", function () {
-        $("div:visible").hide();
+        $("#query1").hide();
+        $("#query2").hide();
+        $("#query3").hide();
+        $("#query4").hide();
         getResultsData3();
         $("#query3").show();
     });
@@ -24,7 +33,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("getResults4").addEventListener("click", function () {
-        $("div:visible").hide();
+        $("#query1").hide();
+        $("#query2").hide();
+        $("#query3").hide();
+        $("#query4").hide();
         getResultsData4();
         $("#query4").show();
     });
